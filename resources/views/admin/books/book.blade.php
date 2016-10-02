@@ -3,9 +3,15 @@
 @section('content')
 <div class="container-fluid">
 	<div class="row">
-		<div class="col-md-12">
-			<h1>This is just a test</h1>
-		</div>
+
+		@include('admin.books.form')
+		
 	</div>
 </div>
 @endsection
+
+
+@push('scripts')
+<script>
+</script>
+@endpush

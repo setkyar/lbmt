@@ -10,7 +10,7 @@ use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
 class AuthController extends Controller
 {
-    protected $redirectPath = '/user';
+    protected $redirectPath = '/member';
 
     /*
     |--------------------------------------------------------------------------

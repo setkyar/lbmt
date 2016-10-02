@@ -2,10 +2,11 @@
 
 namespace App\Http\Middleware;
 
+use Auth;
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
 
-class Authenticate
+class AdminMiddleware
 {
     /**
      * The Guard implementation.
@@ -34,7 +35,7 @@ class Authenticate
      */
     public function handle($request, Closure $next)
     {
-        if ($this->auth->guest()) {
+        if (!$this->auth->guest() && Auth::user()->role !== 'admin') {
             if ($request->ajax()) {
                 return response('Unauthorized.', 401);
             } else {

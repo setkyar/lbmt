@@ -10,6 +10,8 @@
 
 	<!-- Fonts -->
 	<link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css">
+
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -33,7 +35,12 @@
 
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li><a href="{{ url('/') }}">Home</a></li>
+					@if (Auth::guest())
+						<li><a href="{{ url('/') }}">Home</a></li>
+					@else
+						<li><a href="{{ url('/member') }}">Home</a></li>
+						<li><a href="{{ url('/member/books') }}">Borrowed Books</a></li>
+					@endif
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right">
@@ -43,6 +50,10 @@
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
+								@if(Auth::user()->role === "admin")
+								<li><a href="{{ url('/manage/books') }}">Manage Books</a></li>
+								<li><a href="{{ url('/manage/users') }}">Manage Users</a></li>
+								@endif
 								<li><a href="{{ url('/auth/logout') }}">Logout</a></li>
 							</ul>
 						</li>
@@ -57,5 +68,8 @@
 	<!-- Scripts -->
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	<script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
+
+	@stack('scripts')
 </body>
 </html>
