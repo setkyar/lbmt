@@ -37,7 +37,9 @@ class MemberController extends Controller
 
     	if ($book->qty_left > 0) {
  			
- 			if (Carbon::parse(Auth::user()->birthday)->diff(Carbon::now())->format('%y') <= 12) {
+            $time = strtotime(Auth::user()->birthday);
+
+            if (Carbon::parse(date('Y-m-d',$time))->diff(Carbon::now())->format('%y') <= 12) {
  				$user_available_borrow_book = 3;
  			} else {
  				$user_available_borrow_book = 6;
