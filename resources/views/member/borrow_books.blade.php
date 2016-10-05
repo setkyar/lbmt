@@ -37,7 +37,7 @@
 							@elseif(Carbon::parse($book->borrow_time)->diff(Carbon::now())->format('%d') > 14)
 								Failure to return!
 							@else
-								Carbon::parse($book->borrow_time)->diff(Carbon::now())->format('%d') Already!
+								{{ Carbon::parse($book->borrow_time)->diff(Carbon::now())->format('%d') }} Already!
 							@endif
 						</td>
 						<td>
