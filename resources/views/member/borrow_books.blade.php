@@ -42,7 +42,7 @@
 						</td>
 						<td>
 							@if(Carbon::parse($book->borrow_time)->diff(Carbon::now())->format('%d') > 14)
-								{{ getBook($book->book_id)->fees + (Carbon::parse($book->borrow_time)->diff(Carbon::now())->format('%d') - 14 * 10) }}
+								{{ preg_replace("/[^0-9.-]/","",getBook($book->book_id)->fees) + (Carbon::parse($book->borrow_time)->diff(Carbon::now())->format('%d') - 14 * 10) }}
 							@else 
 								{{ getBook($book->book_id)->fees }}
 							@endif
